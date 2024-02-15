@@ -2,13 +2,9 @@ import styled from "styled-components";
 import { useCartContext } from "./context/cart_context";
 import CartItem from "./components/CartItem";
  
-
-const Cart = () => {
+const Cart = ( ) => {
   const { cart } = useCartContext();
   
-
- 
- 
   
   console.log("🚀 ~ file: Cart.js ~ line 6 ~ Cart ~ cart", cart);
   return (
@@ -26,6 +22,7 @@ const Cart = () => {
           <p>Quantity</p>
           <p className="cart-hide">Subtotal</p>
           <p>Remove</p>
+      
         </div>
         <hr />
 
@@ -40,6 +37,7 @@ const Cart = () => {
           ))}
         </div>
       </div>
+     
     </Wrapper>
   );
 };
