@@ -1,6 +1,7 @@
 # Welcome to Thapa Technical React Ecommerce Webstie Series 
 
 ## Follow the 3 Steps and your good to go. 
+Demo : https://ecomstoreb.netlify.app/
 
 1: Clone the Project 
 
