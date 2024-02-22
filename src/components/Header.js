@@ -2,18 +2,14 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import Nav from "./Nav";
-import { useCartContext } from '../context/cart_context';
-const Header = () => {
-  const { cart } = useCartContext();
 
-  // Calculate total index number of items in the cart
-  const totalIndex = cart.length;
+const Header = () => {
   return (
     <MainHeader>
       <NavLink to="/">
         <img src="./images/logo.png" alt="my logo img" />
       </NavLink>
-      <Nav totalIndex={totalIndex} />
+      <Nav />
     </MainHeader>
   );
 };

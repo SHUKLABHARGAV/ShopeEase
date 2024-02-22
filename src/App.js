@@ -11,16 +11,9 @@ import { GlobalStyle } from "./GlobalStyle";
 import { ThemeProvider } from "styled-components";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { useCartContext } from './context/cart_context';
+
 const App = () => {
-  
-  const { cart } = useCartContext();
-
-  // Calculate total index number of items in the cart
-  const totalIndex = cart.length;
-
   const theme = {
-
     colors: {
       heading: "rgb(24 24 29)",
       text: "rgba(29 ,29, 29, .8)",

@@ -1,44 +1,22 @@
 import React from "react";
 import FormatPrice from "../Helpers/FormatPrice";
 import CartAmountToggle from "./CartAmountToggle";
- 
 import { FaTrash } from "react-icons/fa";
 import { useCartContext } from "../context/cart_context";
-// import { useState } from "react";
- 
- 
 
-const CartItem = ({ index, i, id, name, image, color, price,amount } ) => {
-   
-  
-  // const [amount, setAmount] = useState(0);
+const CartItem = ({ id, name, image, color, price, amount }) => {
+  const { removeItem, setDecrease, setIncrement } = useCartContext();
 
-  const setDecrease = () => {
-    // amount > 1 ? setAmount(amount - 1) : setAmount(1);
-  };
-
-  const setIncrease = () => {
-    // amount < stock ? setAmount(amount + 1) : setAmount(stock);
-  };
-
-
-  
- 
-  const { removeItem } = useCartContext();
   // const setDecrease = () => {
-  // //  rate > 1 ? setAmount(rate - 1) : setAmount(1);
+  //   amount > 1 ? setAmounts(amount - 1) : setAmounts(1);
   // };
 
   // const setIncrease = () => {
-  //   // rate < stock ? setAmount(rate + 1) : setAmount(stock);
+  //   amount < stock ? setAmounts(amount + 1) : setAmounts(stock);
   // };
 
- 
-  return (<>
-    <div className="cart_heading grid grid-six-column">
-    <p>
-        {index}
-        </p>
+  return (
+    <div className="cart_heading grid grid-five-column">
       <div className="cart-image--name">
         <div>
           <figure>
@@ -55,7 +33,6 @@ const CartItem = ({ index, i, id, name, image, color, price,amount } ) => {
           </div>
         </div>
       </div>
-     
       {/* price   */}
       <div className="cart-hide">
         <p>
@@ -66,8 +43,8 @@ const CartItem = ({ index, i, id, name, image, color, price,amount } ) => {
       {/* Quantity  */}
       <CartAmountToggle
         amount={amount}
-        setDecrease={setDecrease}
-        setIncrease={setIncrease}
+        setDecrease={() => setDecrease(id)}
+        setIncrease={() => setIncrement(id)}
       />
 
       {/* //Subtotal */}
@@ -78,12 +55,9 @@ const CartItem = ({ index, i, id, name, image, color, price,amount } ) => {
       </div>
 
       <div>
-        <FaTrash className="remove_icon" onClick={() => removeItem(i) }     />
-     
- 
+        <FaTrash className="remove_icon" onClick={() => removeItem(id)} />
       </div>
     </div>
-  </>
   );
 };
 

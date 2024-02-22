@@ -3,15 +3,11 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { FiShoppingCart } from "react-icons/fi";
 import { CgMenu, CgClose } from "react-icons/cg";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useCartContext } from "../context/cart_context";
 
-const Nav = ({ totalIndex }) => {
+const Nav = () => {
   const [menuIcon, setMenuIcon] = useState();
-  const {  isAuthenticated } = useAuth0();
-  const { loginWithRedirect } = useAuth0();
-  const { logout } = useAuth0();
-  
-
+  const { total_item } = useCartContext();
 
   const Nav = styled.nav`
     .navbar-lists {
@@ -203,33 +199,10 @@ const Nav = ({ totalIndex }) => {
               Contact
             </NavLink>
           </li>
-          {
-            isAuthenticated ?  <li>
-            <NavLink
-           
-                className="navbar-link "
-                onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}
-              >LOGOUT  
-                  </NavLink>
-            </li> :
-              <li>
-              <NavLink
-             
-                  className="navbar-link "
-                  onClick={() => loginWithRedirect()}
-                >LOGIN        
-                    </NavLink>
-              </li>
-          }
-        
-         
           <li>
             <NavLink to="/cart" className="navbar-link cart-trolley--link">
               <FiShoppingCart className="cart-trolley" />
-              <span className="cart-total--item">  
-              {totalIndex}
-             
-       </span>
+              <span className="cart-total--item"> {total_item} </span>
             </NavLink>
           </li>
         </ul>

@@ -1,16 +1,34 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, useEffect, } from "react";
 import reducer from "../reducer/cartReducer";
 
 const CartContext = createContext();
 
-const initialState = {
-  cart: [],
-  total_item: "",
-  total_amount: "",
-  shipping_fee: 50000,
+// const getLocalCartData = () => {
+//   let localCartData = localStorage.getItem("thapaCart");
+//   if (localCartData.length === 0) {
+//     return [];
+//   } else {
+//     return JSON.parse(localCartData);
+//   }
+// };
+const getLocalCartData = () => {
+  let localCartData = localStorage.getItem("thapaCart");
+  if (!localCartData || localCartData.length === 0) {
+    return [];
+  } else {
+    return JSON.parse(localCartData);
+  }
 };
 
-
+const initialState = {
+  // cart: [],
+  cart: getLocalCartData(),
+  total_item: getLocalCartData.amount,
+  total_price:0,
+  shipping_fee: 50000,
+  price:0,
+};
+ 
 const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -18,12 +36,55 @@ const CartProvider = ({ children }) => {
     dispatch({ type: "ADD_TO_CART", payload: { id, color, amount, product } });
   };
 
-  const removeItem = (index) => {
-    dispatch({ type: "REMOVE_ITEM", payload: index });
+  // increment and decrement the product
+
+  const setDecrease = (id) => {
+    dispatch({ type: "SET_DECREMENT", payload: id });
   };
 
+  const setIncrement = (id) => {
+    dispatch({ type: "SET_INCREMENT", payload: id });
+  };
+
+  // to remove the individual item from cart
+  const removeItem = (id) => {
+    dispatch({ type: "REMOVE_ITEM", payload: id });
+  };
+
+  // to clear the cart
+  const clearCart = () => {
+    dispatch({ type: "CLEAR_CART" });
+  };
+
+  // to add the data in localStorage
+  // get vs set
+
+  useEffect(() => {
+  // let totalPrice = 0;
+  // let totalItems = 0;
+  //   state.cart.forEach(item => {
+  //     totalPrice += item.amount * item.product.price;
+  //     totalItems += item.amount;
+  //   });
+  //   dispatch({ type: "SET_TOTAL_ITEM", payload: totalItems });
+  //   dispatch({ type: "SET_TOTAL_PRICE", payload: totalPrice });
+    // dispatch({ type: "CART_TOTAL_ITEM" });
+     dispatch({ type: "CART_TOTAL_PRICE" });
+    dispatch({ type: "CART_ITEM_PRICE_TOTAL" });
+
+    localStorage.setItem("thapaCart", JSON.stringify(state.cart));
+  }, [state.cart]);
+
   return (
-    <CartContext.Provider value={{ ...state, addToCart, removeItem }}>
+    <CartContext.Provider
+      value={{
+        ...state,
+        addToCart,
+        removeItem,
+        clearCart,
+        setDecrease,
+        setIncrement,
+      }}>
       {children}
     </CartContext.Provider>
   );
