@@ -55,11 +55,11 @@ const Contact = () => {
             action="https://formspree.io/f/xeqdgwnq"
             method="POST"
             className="contact-inputs">
-            <input
+               <input
               type="text"
               placeholder="username"
               name="username"
-              value= {  isAuthenticated &&  user.name}
+              value= {isAuthenticated ? user.name : ''}
               required
               autoComplete="off"
             />
@@ -68,7 +68,7 @@ const Contact = () => {
               type="email"
               name="Email"
               placeholder="Email"
-              value={isAuthenticated && user.email}
+              value={isAuthenticated ? user.email : ''}
               autoComplete="off"
               required
             />
