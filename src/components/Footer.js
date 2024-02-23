@@ -27,7 +27,7 @@ const Footer = () => {
         <footer>
           <div className="container grid grid-four-column">
             <div className="footer-about">
-              <h3>Thapa Technical</h3>
+              <h3>Shukla Bhargav</h3>
               <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
             </div>
             <div className="footer-subscribe">
@@ -66,7 +66,7 @@ const Footer = () => {
             <hr />
             <div className="container grid grid-two-column ">
               <p>
-                @{new Date().getFullYear()} ThapaTechnical. All Rights Reserved
+                @{new Date().getFullYear()} Shukla Bhargav. All Rights Reserved
               </p>
               <div>
                 <p>PRIVACY POLICY</p>
@@ -102,7 +102,7 @@ const Wrapper = styled.section`
 
   footer {
     padding: 14rem 0 9rem 0;
-    background-color: ${({ theme }) => theme.colors.footer_bg};
+   background-color:  black;
     h3 {
       color: ${({ theme }) => theme.colors.hr};
       margin-bottom: 2.4rem;
